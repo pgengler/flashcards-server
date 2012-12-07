@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   def index
-		@cards = Card.all
+    @card = Card.random
+    render :show
   end
 
   def show
