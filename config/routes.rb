@@ -1,11 +1,7 @@
 Flashcards::Application.routes.draw do
-  get "card/index"
+  resources :cards
 
-  get "card/show"
-
-  get "card/new"
-
-  get "card/edit"
+  root :to => 'cards#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
