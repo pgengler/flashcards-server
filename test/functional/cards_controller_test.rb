@@ -7,7 +7,7 @@ class CardsControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    get :show
+    get :show, :id => cards(:one).id
     assert_response :success
   end
 
@@ -17,7 +17,7 @@ class CardsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit
+    get :edit, :id => cards(:one).id
     assert_response :success
   end
 
