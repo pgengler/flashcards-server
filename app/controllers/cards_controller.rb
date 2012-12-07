@@ -19,4 +19,11 @@ class CardsController < ApplicationController
   def edit
     @card = Card.find(params[:id])
   end
+
+  def update
+    @card = Card.find(params[:id])
+    @card.update_attributes params[:card]
+
+    redirect_to card_path(@card)
+  end
 end
