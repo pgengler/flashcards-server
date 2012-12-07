@@ -10,6 +10,12 @@ class CardsController < ApplicationController
     @card = Card.new
   end
 
+  def create
+    @card = Card.create!(params[:card])
+
+    redirect_to card_path(@card)
+  end
+
   def edit
     @card = Card.find(params[:id])
   end
