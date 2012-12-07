@@ -1,4 +1,12 @@
 Flashcards::Application.routes.draw do
+  get "card/index"
+
+  get "card/show"
+
+  get "card/new"
+
+  get "card/edit"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
