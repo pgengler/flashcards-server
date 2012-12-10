@@ -32,4 +32,12 @@ class CardsController < ApplicationController
     flash[:notice] = 'Card saved'
     redirect_to card_path(@card)
   end
+
+  def destroy
+    @card = Card.find(params[:id])
+    @card.destroy
+
+    flash[:notice] = 'Card deleted'
+    redirect_to cards_path
+  end
 end
