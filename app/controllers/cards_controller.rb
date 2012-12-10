@@ -10,6 +10,7 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
+    @form_title = 'New card'
   end
 
   def create
@@ -21,6 +22,7 @@ class CardsController < ApplicationController
 
   def edit
     @card = Card.find(params[:id])
+    @form_title = 'Edit card'
   end
 
   def update

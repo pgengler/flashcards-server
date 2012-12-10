@@ -1,15 +1,13 @@
 <%= form_for(@card) do |f| %>
-	<div class='field'>
+	<fieldset>
+		<legend><%= @form_title %></legend>
+
 		<%= f.label :front %>
 		<%= f.text_area :front %>
-	</div>
 
-	<div class='field'>
 		<%= f.label :back %>
 		<%= f.text_area :back %>
-	</div>
 
-	<div class='actions'>
 		<%= f.submit %>
-	</div>
+	</fieldset>
 <% end %>
