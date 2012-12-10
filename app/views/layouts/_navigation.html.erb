@@ -6,7 +6,7 @@
 	<li>
 		<%= link_to 'Random', cards_path %>
 	</li>
-	<% if @card %>
+	<% if @card && @card.id %>
 	<li>
 		<%= link_to 'Edit', edit_card_path(@card) %>
 	</li>
