@@ -4,3 +4,10 @@ div.card {
 	padding: 1em;
 	width: 26em;
 }
+
+form.edit_card, form.new_card {
+	textarea {
+		height: 12em;
+		width: 26em;
+	}
+}
