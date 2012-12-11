@@ -3,6 +3,10 @@ div.card {
 	height: 12em;
 	padding: 1em;
 	width: 26em;
+
+	&.hidden {
+		display: none;
+	}
 }
 
 form.edit_card, form.new_card {
