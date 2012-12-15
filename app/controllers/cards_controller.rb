@@ -1,7 +1,11 @@
 class CardsController < ApplicationController
   def index
     @card = Card.random
-    render :show
+    if @card
+      render :show
+    else
+      redirect_to new_card_path
+    end
   end
 
   def show
