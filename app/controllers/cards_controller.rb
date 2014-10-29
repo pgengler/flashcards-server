@@ -18,7 +18,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.create!(params[:card])
+    @card = Card.create!(card_params)
 
     flash[:notice] = 'Card added'
     redirect_to card_path(@card)
@@ -31,7 +31,7 @@ class CardsController < ApplicationController
 
   def update
     @card = Card.find(params[:id])
-    @card.update_attributes params[:card]
+    @card.update_attributes card_params
 
     flash[:notice] = 'Card saved'
     redirect_to card_path(@card)
@@ -44,4 +44,10 @@ class CardsController < ApplicationController
     flash[:notice] = 'Card deleted'
     redirect_to cards_path
   end
+
+	private
+
+	def card_params
+		params.require(:card).permit(:front, :back)
+	end
 end
