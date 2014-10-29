@@ -49,6 +49,7 @@ GEM
     colorize (0.7.3)
     erubis (2.7.0)
     execjs (2.2.2)
+    github-markdown (0.6.7)
     hike (1.2.3)
     html-pipeline (1.11.0)
       activesupport (>= 2)
@@ -248,6 +249,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capistrano3-unicorn
+  github-markdown
   html-pipeline (~> 1.11.0)
   jquery-rails
   pg

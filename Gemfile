@@ -20,4 +20,6 @@ group :development do
 end
 
 gem 'bootstrap-sass'
+
+gem 'github-markdown'
 gem 'html-pipeline', '~> 1.11.0'
