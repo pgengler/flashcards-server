@@ -1,5 +1,5 @@
-<%= link_to 'Home', root_path, :class => 'brand' %>
-<ul class='nav'>
+<%= link_to 'Home', root_path, class: 'navbar-brand' %>
+<ul class='nav navbar-nav'>
 	<li>
 		<%= link_to 'New', new_card_path %>
 	</li>
@@ -11,7 +11,7 @@
 		<%= link_to 'Edit', edit_card_path(@card) %>
 	</li>
 	<li>
-		<%= link_to 'Delete', card_path(@card), :method => 'delete', :confirm => 'Really delete this card?' %>
+		<%= link_to 'Delete', card_path(@card), method: 'delete', confirm: 'Really delete this card?' %>
 	</li>
 	<% end %>
 </ul>

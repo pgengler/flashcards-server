@@ -9,23 +9,16 @@
   <%= yield(:head) %>
 </head>
 <body>
-	<header class='navbar navbar-fixed-top'>
-		<nav class='navban-inner'>
-			<div class='container'>
-				<%= render 'layouts/navigation' %>
-			</div>
-		</nav>
-	</header>
-	<div id='main' role='main'>
+	<nav class='navbar navbar-default' role='navigation'>
 		<div class='container'>
-			<div class='content'>
-				<div class='row'>
-					<div class='span12'>
-						<%= render 'layouts/messages' %>
-						<%= yield %>
-					</div>
-				</div>
-				<footer></footer>
+			<%= render 'layouts/navigation' %>
+		</div>
+	</nav>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-12'>
+				<%= render 'layouts/messages' %>
+				<%= yield %>
 			</div>
 		</div>
 	</div>
