@@ -23,3 +23,6 @@ gem 'bootstrap-sass'
 
 gem 'github-markdown'
 gem 'html-pipeline', '~> 1.11.0'
+
+gem 'dotenv-rails'
+gem 'unicorn'
