@@ -1,44 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.0'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '~> 4.1.0'
 
 gem 'pg'
-gem 'sqlite3'
 
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'uglifier'
 end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-gem 'rvm-capistrano'
-gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :development do
+	gem 'capistrano', '~> 3.0'
+	gem 'capistrano-rails'
+	gem 'capistrano-rvm'
+	gem 'capistrano-bundler'
+	gem 'capistrano3-unicorn'
+end
 
 gem 'bootstrap-sass'
-
-gem 'html-pipeline'
+gem 'html-pipeline', '~> 1.11.0'
