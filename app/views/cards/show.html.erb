@@ -1,7 +1,11 @@
-<div class='card front'>
-	<%= markdown @card.front %>
-</div>
+<div class='flip-container'>
+	<div class='flipper'>
+		<div class='card front'>
+			<%= markdown @card.front %>
+		</div>
 
-<div class='card back hidden'>
-	<%= markdown @card.back %>
+		<div class='card back'>
+			<%= markdown @card.back %>
+		</div>
+	</div>
 </div>
