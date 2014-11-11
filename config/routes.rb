@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-	resources :cards
-	root :to => 'cards#index'
+	get 'cards/random' => 'cards#random', as: :random_card
+	resources :cards, except: [ :index ]
+	root to: 'cards#random'
 end

@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  def index
+  def random
     @card = Card.random
     if @card
       render :show
