@@ -16,7 +16,7 @@ group :development do
 	gem 'capistrano-rails'
 	gem 'capistrano-rvm'
 	gem 'capistrano-bundler'
-	gem 'capistrano3-unicorn'
+	gem 'capistrano3-puma'
 end
 
 gem 'bootstrap-sass'
@@ -25,4 +25,4 @@ gem 'github-markdown'
 gem 'html-pipeline', '~> 1.11.0'
 
 gem 'dotenv-rails'
-gem 'unicorn'
+gem 'puma'
