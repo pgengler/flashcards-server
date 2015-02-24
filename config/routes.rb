@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 	resources :cards, except: [ :index ]
 	root to: 'cards#random'
 
-	scope :api do
+	scope :api, defaults: { format: :json } do
 		get 'cards' => 'cards#index'
+		get 'cards/:id' => 'cards#show'
 	end
 end
