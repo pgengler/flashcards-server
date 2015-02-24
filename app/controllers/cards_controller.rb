@@ -1,5 +1,9 @@
 class CardsController < ApplicationController
 	before_filter :find_random_card_or_redirect, only: [ :random, :random_front, :random_back ]
+	def index
+		render json: Card.all
+	end
+
 	def random
 		if rand() < 0.5
 			random_front

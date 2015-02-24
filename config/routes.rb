@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 	get 'cards/random/back' => 'cards#random_back', as: :random_card_back
 	resources :cards, except: [ :index ]
 	root to: 'cards#random'
+
+	scope :api do
+		get 'cards' => 'cards#index'
+	end
 end

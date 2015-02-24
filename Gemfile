@@ -26,3 +26,5 @@ gem 'html-pipeline', '~> 1.11.0'
 
 gem 'dotenv-rails'
 gem 'puma'
+
+gem 'active_model_serializers', '~> 0.8.3'
