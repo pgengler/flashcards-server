@@ -53,8 +53,13 @@ class CardsController < ApplicationController
 		@card = Card.find(params[:id])
 		@card.update_attributes card_params
 
-		flash[:notice] = 'Card saved'
-		redirect_to card_path(@card)
+		respond_to do |format|
+			format.html {
+				flash[:notice] = 'Card saved'
+				redirect_to card_path(@card)
+			}
+			format.json { render json: @card }
+		end
 	end
 
 	def destroy

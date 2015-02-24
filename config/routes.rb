@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 	scope :api, defaults: { format: :json } do
 		get 'cards' => 'cards#index'
 		get 'cards/:id' => 'cards#show'
+		put 'cards/:id' => 'cards#update'
 	end
 end
