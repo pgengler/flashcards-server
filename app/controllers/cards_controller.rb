@@ -40,8 +40,13 @@ class CardsController < ApplicationController
 	def create
 		@card = Card.create!(card_params)
 
-		flash[:notice] = 'Card added'
-		redirect_to card_path(@card)
+		respond_to do |format|
+			format.html {
+				flash[:notice] = 'Card added'
+				redirect_to card_path(@card)
+			}
+			format.json { render json: @card, status: :created }
+		end
 	end
 
 	def edit
