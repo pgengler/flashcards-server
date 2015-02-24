@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 		get 'cards' => 'cards#index'
 		get 'cards/:id' => 'cards#show'
 		put 'cards/:id' => 'cards#update'
+		delete 'cards/:id' => 'cards#destroy'
 	end
 end

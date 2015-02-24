@@ -66,8 +66,13 @@ class CardsController < ApplicationController
 		@card = Card.find(params[:id])
 		@card.destroy
 
-		flash[:notice] = 'Card deleted'
-		redirect_to cards_path
+		respond_to do |format|
+			format.html {
+				flash[:notice] = 'Card deleted'
+				redirect_to cards_path
+			}
+			format.json { head :no_content }
+		end
 	end
 
 	private
