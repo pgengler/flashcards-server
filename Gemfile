@@ -1,15 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.1.0'
+gem 'rails-api'
 
 gem 'pg'
 
-group :assets do
-  gem 'sass-rails'
-  gem 'uglifier'
-end
-
-gem 'jquery-rails'
+gem 'active_model_serializers', '~> 0.8.3'
 
 group :development do
 	gem 'capistrano', '~> 3.0'
@@ -19,12 +15,5 @@ group :development do
 	gem 'capistrano3-puma'
 end
 
-gem 'bootstrap-sass'
-
-gem 'github-markdown'
-gem 'html-pipeline', '~> 1.11.0'
-
 gem 'dotenv-rails'
 gem 'puma'
-
-gem 'active_model_serializers', '~> 0.8.3'
