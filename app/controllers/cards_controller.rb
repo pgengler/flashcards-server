@@ -1,26 +1,32 @@
 class CardsController < ApplicationController
+	before_filter :find_card, only: [ :show, :update, :destroy ]
 	def index
 		render json: Card.all
 	end
 
 	def show
-		@card = Card.find(params[:id])
 		render json: @card
 	end
 
 	def create
-		@card = Card.create!(card_params)
-		render json: @card, status: :created
+		@card = Card.new(card_params)
+		if @card.save
+			render json: @card, status: :created
+		else
+			head :unprocessable_entity
+		end
 	end
 
 	def update
-		@card = Card.find(params[:id])
 		@card.update_attributes card_params
-		render json: @card
+		if @card.save
+			render json: @card
+		else
+			head :unprocessable_entity
+		end
 	end
 
 	def destroy
-		@card = Card.find(params[:id])
 		@card.destroy
 		head :no_content
 	end
@@ -29,5 +35,11 @@ class CardsController < ApplicationController
 
 	def card_params
 		params.require(:card).permit(:front, :back)
+	end
+
+	def find_card
+		@card = Card.find(params[:id])
+	rescue ActiveRecord::RecordNotFound
+		head :not_found
 	end
 end
