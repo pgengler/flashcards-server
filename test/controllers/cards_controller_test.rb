@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class CardsControllerTest < ActionController::TestCase
 	test "can create a new card" do
 		assert_difference 'Card.count' do
