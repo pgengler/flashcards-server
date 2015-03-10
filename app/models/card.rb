@@ -1,6 +1,5 @@
 class Card < ActiveRecord::Base
-	has_many :cards_card_sets
-	has_many :card_sets, through: :cards_card_sets
+	has_and_belongs_to_many :card_sets
 
 	validates_presence_of :front, :back
 

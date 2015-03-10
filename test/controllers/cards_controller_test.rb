@@ -66,6 +66,11 @@ class CardsControllerTest < ActionController::TestCase
 		assert_equal cards(:one).back, json_response['card']['back']
 	end
 
+	test "JSON response for a single includes card sets" do
+		get :show, id: cards(:in_one_set)
+		assert_equal 1, json_response['card_sets'].length
+	end
+
 	test "returns correct HTTP status code when trying to get a nonexistent card" do
 		get :show, id: 12345
 		assert_response :not_found

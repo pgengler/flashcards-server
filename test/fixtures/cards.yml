@@ -7,3 +7,8 @@ one:
 two:
   front: Card Two Front
   back: Card Two Back
+
+in_one_set:
+  front: The card's front
+  back: The card's back
+  card_sets: one

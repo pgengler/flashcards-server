@@ -1,6 +1,5 @@
 class CardSet < ActiveRecord::Base
-	has_many :cards_card_sets
-	has_many :cards, through: :cards_card_sets
+	has_and_belongs_to_many :cards
 
 	validates :name, presence: true, uniqueness: true
 end
