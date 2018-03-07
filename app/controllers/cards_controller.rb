@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-	before_filter :find_card, only: [ :show, :update, :destroy ]
+	before_action :find_card, only: [ :show, :update, :destroy ]
 	def index
 		render json: Card.all
 	end
