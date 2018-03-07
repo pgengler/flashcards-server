@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,8 +15,8 @@ ActiveRecord::Schema.define(version: 20150310155531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "card_sets", force: :cascade do |t|
-    t.string   "name"
+  create_table "card_sets", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,14 +24,13 @@ ActiveRecord::Schema.define(version: 20150310155531) do
   create_table "card_sets_cards", id: false, force: :cascade do |t|
     t.integer "card_id"
     t.integer "card_set_id"
+    t.index ["card_id"], name: "index_card_sets_cards_on_card_id"
+    t.index ["card_set_id"], name: "index_card_sets_cards_on_card_set_id"
   end
 
-  add_index "card_sets_cards", ["card_id"], name: "index_card_sets_cards_on_card_id", using: :btree
-  add_index "card_sets_cards", ["card_set_id"], name: "index_card_sets_cards_on_card_set_id", using: :btree
-
-  create_table "cards", force: :cascade do |t|
-    t.text     "front"
-    t.text     "back"
+  create_table "cards", id: :serial, force: :cascade do |t|
+    t.text "front"
+    t.text "back"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

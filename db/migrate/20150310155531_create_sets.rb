@@ -1,4 +1,4 @@
-class CreateSets < ActiveRecord::Migration
+class CreateSets < ActiveRecord::Migration[4.2]
   def change
     create_table :card_sets do |t|
       t.string :name
