@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.1.5'
 
+gem 'dotenv-rails'
+gem 'jsonapi-resources'
 gem 'pg'
-
-gem 'active_model_serializers', '~> 0.8.3'
+gem 'puma'
 
 group :development do
 	gem 'listen'
@@ -16,5 +17,6 @@ group :development do
 	gem 'capistrano3-puma'
 end
 
-gem 'dotenv-rails'
-gem 'puma'
+group :development, :test do
+	gem 'factory_bot_rails'
+end
