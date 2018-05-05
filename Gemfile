@@ -10,7 +10,7 @@ gem 'puma'
 group :development do
 	gem 'listen'
 
-	gem 'capistrano', '~> 3.0'
+	gem 'capistrano', '~> 3.3.5'
 	gem 'capistrano-rails'
 	gem 'capistrano-rvm'
 	gem 'capistrano-bundler'
