@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.0'
 
 gem 'dotenv-rails'
 gem 'jsonapi-resources'
 gem 'pg'
-gem 'puma'
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'puma', '~> 4.1'
+gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development do
-	gem 'listen'
+	gem 'listen', '~> 3.2'
 
 	gem 'capistrano', '~> 3.3.5'
 	gem 'capistrano-rails'
