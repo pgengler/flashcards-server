@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.0'
 
 gem 'dotenv-rails'
 gem 'jsonapi-resources'
