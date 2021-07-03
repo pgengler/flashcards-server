@@ -6,6 +6,7 @@ gem 'dotenv-rails'
 gem 'jsonapi-resources'
 gem 'pg'
 gem 'puma'
+gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development do
 	gem 'listen'
