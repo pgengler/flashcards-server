@@ -6,12 +6,7 @@ class CardSetsTest < ActionDispatch::IntegrationTest
 
   test 'can create a new card set' do
     assert_difference 'CardSet.count' do
-      jsonapi_post '/api/card-sets', params: {
-        data: {
-          attributes: { name: 'Card Set' },
-          type: 'card-sets'
-        }
-      }.to_json
+      jsonapi_post :card_set, { name: 'Card Set' }
     end
 
     assert_response :created
@@ -19,12 +14,7 @@ class CardSetsTest < ActionDispatch::IntegrationTest
 
   test 'does not create a card set without a name' do
     assert_no_difference 'CardSet.count' do
-      jsonapi_post '/api/card-sets', params: {
-        data: {
-          attributes: { name: '' },
-          type: 'card-sets'
-        }
-      }.to_json
+      jsonapi_post :card_set, { name: '' }
     end
 
     assert_response :unprocessable_entity

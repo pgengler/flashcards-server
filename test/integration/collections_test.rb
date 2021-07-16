@@ -6,24 +6,14 @@ class CollectionsTest < ActionDispatch::IntegrationTest
 
   test 'can create a new collection' do
     assert_difference 'Collection.count' do
-      jsonapi_post '/api/collections', params: {
-        data: {
-          attributes: { name: 'abc' },
-          type: 'collections'
-        }
-      }.to_json
+      jsonapi_post :collections, { name: 'abc' }
     end
     assert_response :created
   end
 
   test 'cannot create a collection without a name' do
     assert_no_difference 'Collection.count' do
-      jsonapi_post '/api/collections', params: {
-        data: {
-          attributes: { name: '' },
-          type: 'collections'
-        }
-      }.to_json
+      jsonapi_post :collections, { name: '' }
     end
     assert_response :unprocessable_entity
   end
@@ -31,13 +21,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
   test 'can edit a collection' do
     collection = create(:collection, name: 'xyz')
 
-    jsonapi_patch "/api/collections/#{collection.id}", params: {
-      data: {
-        attributes: { name: 'abc' },
-        id: collection.id,
-        type: 'collections'
-      }
-    }.to_json
+    jsonapi_patch :collection, collection.id, { name: 'abc' }
 
     assert_response :success
 
@@ -49,13 +33,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
   test 'cannot update a collection to set a blank name' do
     collection = create(:collection, name: 'abc')
 
-    jsonapi_patch "/api/collections/#{collection.id}", params: {
-      data: {
-        attributes: { name: '' },
-        id: collection.id,
-        type: 'collections'
-      }
-    }.to_json
+    jsonapi_patch :collection, collection.id, { name: '' }
 
     assert_response :unprocessable_entity
 
@@ -68,7 +46,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
     collection = create(:collection)
 
     assert_difference 'Collection.count', -1 do
-      jsonapi_delete "/api/collections/#{collection.id}"
+      jsonapi_delete :collection, collection.id
     end
 
     assert_response :no_content
@@ -77,7 +55,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
   test 'can get a single collection' do
     collection = create(:collection, name: 'the collection')
 
-    jsonapi_get "/api/collections/#{collection.id}"
+    jsonapi_get :collection, collection.id
 
     assert_response :success
     body = JSON.parse(response.body)
