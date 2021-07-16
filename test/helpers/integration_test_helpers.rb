@@ -20,36 +20,43 @@ module IntegrationTestHelpers
   def jsonapi_patch(type, id, attributes, relationships=[])
     type = normalized_type(type)
     url = "/api/#{type}/#{id}"
+    data = {
+      attributes: attributes,
+      id: id,
+      type: type,
+    }
+    unless relationships.empty?
+      data[:relationships] = format_relationships(relationships)
+    end
+
     args = {
       params: {
-        data: {
-          attributes: attributes,
-          id: id,
-          relationships: format_relationships(relationships),
-          type: type,
-        }
+        data: data,
       }.to_json,
       headers: headers,
     }
-    p "----------"
-    p args
-    p "----------"
+
     patch url, **args
   end
 
   def jsonapi_post(type, attributes, relationships=[])
     type = normalized_type(type)
     url = "/api/#{type}"
+    data = {
+      attributes: attributes,
+      type: type,
+    }
+    unless relationships.empty?
+      data[:relationships] = format_relationships(relationships)
+    end
+
     args = {
       params: {
-        data: {
-          attributes: attributes,
-          relationships: format_relationships(relationships),
-          type: type,
-        }
+        data: data,
       }.to_json,
       headers: headers,
     }
+
     post url, **args
   end
 
@@ -75,7 +82,7 @@ module IntegrationTestHelpers
         }
       }
     end
-    relationship_obj.to_json
+    relationship_obj
   end
 
   def add_headers_to_args(args)

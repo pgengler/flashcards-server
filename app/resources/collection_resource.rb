@@ -1,5 +1,5 @@
 class CollectionResource < JSONAPI::Resource
-  attributes :name
+  attributes :name, :slug
 
   filter :slug
 

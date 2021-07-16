@@ -1,3 +1,3 @@
-class CollectionsController < JSONAPI::ResourceController
+class CollectionsController < ApplicationController
 
 end

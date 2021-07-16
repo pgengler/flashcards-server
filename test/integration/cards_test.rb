@@ -18,7 +18,7 @@ class CardsTest < ActionDispatch::IntegrationTest
 
   test 'cannot create a card without front and back content' do
     assert_no_difference 'Card.count' do
-      jsonapi_post :card, { front: '', back: '' }
+      jsonapi_post :card, { front: '', back: '' }, [@collection]
     end
     assert_response :unprocessable_entity
   end

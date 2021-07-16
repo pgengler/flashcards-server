@@ -7,6 +7,6 @@ class Collection < ApplicationRecord
 
   private
   def generate_slug
-    self.slug = self.name.downcase.dasherize
+    self.slug = self.name.downcase.parameterize
   end
 end
