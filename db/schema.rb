@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_210112) do
+ActiveRecord::Schema.define(version: 2021_07_18_023524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_07_16_210112) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "collection_id", null: false
+    t.index ["collection_id"], name: "index_card_sets_on_collection_id"
   end
 
   create_table "card_sets_cards", id: false, force: :cascade do |t|
@@ -44,5 +46,6 @@ ActiveRecord::Schema.define(version: 2021_07_16_210112) do
     t.string "slug"
   end
 
+  add_foreign_key "card_sets", "collections"
   add_foreign_key "cards", "collections"
 end
