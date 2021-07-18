@@ -4,4 +4,5 @@ class CollectionResource < JSONAPI::Resource
   filter :slug
 
   has_many :cards
+  has_many :card_sets
 end

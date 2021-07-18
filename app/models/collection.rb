@@ -4,6 +4,7 @@ class Collection < ApplicationRecord
   validates_uniqueness_of :name
 
   has_many :cards
+  has_many :card_sets
 
   private
   def generate_slug
