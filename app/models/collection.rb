@@ -3,8 +3,8 @@ class Collection < ApplicationRecord
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  has_many :cards
-  has_many :card_sets
+  has_many :cards, dependent: :destroy
+  has_many :card_sets, dependent: :destroy
 
   private
   def generate_slug

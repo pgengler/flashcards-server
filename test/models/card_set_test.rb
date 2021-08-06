@@ -22,12 +22,19 @@ class CardSetTest < ActiveSupport::TestCase
 		assert_nothing_raised do
 			CardSet.create! name: name, collection: collection
 		end
-
 	end
 
 	test 'requires a collection' do
 		assert_raises ActiveRecord::RecordInvalid do
 			CardSet.create! name: 'Card set'
+		end
+	end
+
+	test 'removing a card set does not remove its associated cards' do
+		collection = create(:collection)
+		card_set = create(:card_set, collection: collection)
+		assert_no_difference 'Card.count' do
+			card_set.destroy!
 		end
 	end
 end
