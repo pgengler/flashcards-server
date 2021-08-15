@@ -26,7 +26,7 @@ class CardsTest < ActionDispatch::IntegrationTest
   test 'can edit a card' do
     card = create(:card)
 
-    jsonapi_patch :card, card.id, { front: 'abc' }
+    jsonapi_patch card, { front: 'abc' }
 
     assert_response :success
 
@@ -38,7 +38,7 @@ class CardsTest < ActionDispatch::IntegrationTest
   test 'cannot update a card to set blank content' do
     card = create(:card, front: 'Back', back: 'Front')
 
-    jsonapi_patch :card, card.id, { back: '' }
+    jsonapi_patch card, { back: '' }
 
     assert_response :unprocessable_entity
 
@@ -51,7 +51,7 @@ class CardsTest < ActionDispatch::IntegrationTest
     card = create(:card)
 
     assert_difference 'Card.count', -1 do
-      jsonapi_delete :card, card.id
+      jsonapi_delete card
     end
 
     assert_response :no_content
@@ -60,7 +60,7 @@ class CardsTest < ActionDispatch::IntegrationTest
   test 'can get a single card' do
     card = create(:card, front: 'the front', back: 'the back')
 
-    jsonapi_get :card, card.id
+    jsonapi_get card
 
     assert_response :success
     body = JSON.parse(response.body)

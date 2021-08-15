@@ -21,7 +21,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
   test 'can edit a collection' do
     collection = create(:collection, name: 'xyz')
 
-    jsonapi_patch :collection, collection.id, { name: 'abc' }
+    jsonapi_patch collection, { name: 'abc' }
 
     assert_response :success
 
@@ -33,7 +33,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
   test 'cannot update a collection to set a blank name' do
     collection = create(:collection, name: 'abc')
 
-    jsonapi_patch :collection, collection.id, { name: '' }
+    jsonapi_patch collection, { name: '' }
 
     assert_response :unprocessable_entity
 
@@ -46,7 +46,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
     collection = create(:collection)
 
     assert_difference 'Collection.count', -1 do
-      jsonapi_delete :collection, collection.id
+      jsonapi_delete collection
     end
 
     assert_response :no_content
@@ -55,7 +55,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
   test 'can get a single collection' do
     collection = create(:collection, name: 'the collection')
 
-    jsonapi_get :collection, collection.id
+    jsonapi_get collection
 
     assert_response :success
     body = JSON.parse(response.body)

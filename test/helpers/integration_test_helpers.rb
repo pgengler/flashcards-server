@@ -1,28 +1,29 @@
 module IntegrationTestHelpers
-  def jsonapi_delete(type, id)
-    type = normalized_type(type)
-    url = "/api/#{type}/#{id}"
+  def jsonapi_delete(model)
+    type = type_from_model(model)
+    url = "/api/#{type}/#{model.id}"
     args = { headers: headers }
     delete url, **args
   end
 
-  def jsonapi_get(type, id=nil)
-    type = normalized_type(type)
-    if id.nil?
-      url = "/api/#{type}"
+  def jsonapi_get(model_or_type)
+    if model_or_type.is_a?(ApplicationRecord)
+      type = type_from_model(model_or_type)
+      url = "/api/#{type}/#{model_or_type.id}"
     else
-      url = "/api/#{type}/#{id}"
+      type = normalized_type(model_or_type)
+      url = "/api/#{type}"
     end
     args = { headers: headers }
     get url, **args
   end
 
-  def jsonapi_patch(type, id, attributes, relationships=[])
-    type = normalized_type(type)
-    url = "/api/#{type}/#{id}"
+  def jsonapi_patch(model, attributes, relationships=[])
+    type = type_from_model(model)
+    url = "/api/#{type}/#{model.id}"
     data = {
       attributes: attributes,
-      id: id,
+      id: model.id,
       type: type,
     }
     unless relationships.empty?
@@ -68,7 +69,12 @@ module IntegrationTestHelpers
   end
 
   def normalized_type(type)
-    type.to_s.downcase.dasherize.pluralize
+    type.to_s.underscore.downcase.dasherize.pluralize
+  end
+
+  def type_from_model(model)
+    raise TypeError, 'argument must be a model' unless model.is_a?(ApplicationRecord)
+    normalized_type model.model_name
   end
 
   def format_relationships(relationships)

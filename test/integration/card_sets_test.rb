@@ -33,7 +33,7 @@ class CardSetsTest < ActionDispatch::IntegrationTest
   test 'can update the name of a card set' do
     card_set = create(:card_set, name: 'Card set')
 
-    jsonapi_patch :card_set, card_set.id, { name: 'New name' }
+    jsonapi_patch card_set, { name: 'New name' }
     assert_response :success
 
     card_set.reload
@@ -43,7 +43,7 @@ class CardSetsTest < ActionDispatch::IntegrationTest
   test 'cannot update a card set to a blank name' do
     card_set = create(:card_set, name: 'Card set')
 
-    jsonapi_patch :card_set, card_set.id, { name: '' }
+    jsonapi_patch card_set, { name: '' }
     assert_response :unprocessable_entity
 
     card_set.reload
@@ -54,7 +54,7 @@ class CardSetsTest < ActionDispatch::IntegrationTest
     card_set = create(:card_set)
 
     assert_difference 'CardSet.count', -1 do
-      jsonapi_delete :card_set, card_set.id
+      jsonapi_delete card_set
     end
 
     assert_response :no_content
@@ -63,7 +63,7 @@ class CardSetsTest < ActionDispatch::IntegrationTest
   test 'can get a single card set' do
     card_set = create(:card_set, name: 'the name')
 
-    jsonapi_get :card_set, card_set.id
+    jsonapi_get card_set
 
     assert_response :success
     body = JSON.parse(response.body)
