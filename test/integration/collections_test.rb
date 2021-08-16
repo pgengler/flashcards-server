@@ -66,9 +66,9 @@ class CollectionsTest < ActionDispatch::IntegrationTest
     collection = create(:collection)
 
     csv_data = CSV.generate do |csv|
-      csv << ["a front", "a back"]
-      csv << ["another front", "another back"]
-      csv << ["yet another front", "yet another back"]
+      csv << ['a front', 'a back']
+      csv << ['another front', 'another back']
+      csv << ['yet another front', 'yet another back']
     end
 
     assert_difference 'Card.count', 3 do
@@ -78,15 +78,32 @@ class CollectionsTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'import operation returns JSON with the number of cards added' do
+    collection = create(:collection)
+
+    csv_data = CSV.generate do |csv|
+      csv << ['a front', 'a back']
+      csv << ['another front', 'another back']
+      csv << ['yet another front', 'yet another back']
+      csv << ['by now', 'you know the drill']
+    end
+
+    post "/api/collections/#{collection.id}/import", params: csv_data, headers: { 'Content-Type': 'text/csv' }
+
+    assert_response :success
+    json = JSON.parse(response.body)
+    assert_equal json['count'], 4
+  end
+
   test 'fails with 404 Not Found if trying to import to a nonexistent collection' do
     csv_data = CSV.generate do |csv|
-      csv << ["a front", "a back"]
-      csv << ["another front", "another back"]
-      csv << ["yet another front", "yet another back"]
+      csv << ['a front', 'a back']
+      csv << ['another front', 'another back']
+      csv << ['yet another front', 'yet another back']
     end
 
     assert_no_difference 'Card.count' do
-      post "/api/collections/3145926/import", params: csv_data, headers: { 'Content-Type': 'text/csv' }
+      post '/api/collections/3145926/import', params: csv_data, headers: { 'Content-Type': 'text/csv' }
     end
 
     assert_response :not_found
@@ -96,9 +113,9 @@ class CollectionsTest < ActionDispatch::IntegrationTest
     collection = create(:collection)
 
     csv_data = CSV.generate do |csv|
-      csv << ["a front", "a back"]
-      csv << ["another front", nil]
-      csv << [nil, "another back"]
+      csv << ['a front', 'a back']
+      csv << ['another front', nil]
+      csv << [nil, 'another back']
     end
 
     assert_no_difference 'Card.count' do
