@@ -4,26 +4,21 @@ require 'helpers/integration_test_helpers'
 class CardsTest < ActionDispatch::IntegrationTest
   include IntegrationTestHelpers
 
+  setup :create_collection
+
   test 'can create a new card' do
     assert_difference 'Card.count' do
-      jsonapi_post '/api/cards', params: {
-        data: {
-          attributes: { front: 'abc', back: 'xyz' },
-          type: 'cards'
-        }
-      }.to_json
+      jsonapi_post :card, {
+        front: 'abc',
+        back: 'xyz'
+      }, [@collection]
     end
     assert_response :created
   end
 
   test 'cannot create a card without front and back content' do
     assert_no_difference 'Card.count' do
-      jsonapi_post '/api/cards', params: {
-        data: {
-          attributes: { front: '', back: '' },
-          type: 'cards'
-        }
-      }.to_json
+      jsonapi_post :card, { front: '', back: '' }, [@collection]
     end
     assert_response :unprocessable_entity
   end
@@ -31,13 +26,7 @@ class CardsTest < ActionDispatch::IntegrationTest
   test 'can edit a card' do
     card = create(:card)
 
-    jsonapi_patch "/api/cards/#{card.id}", params: {
-      data: {
-        attributes: { front: 'abc' },
-        id: card.id,
-        type: 'cards'
-      }
-    }.to_json
+    jsonapi_patch card, { front: 'abc' }
 
     assert_response :success
 
@@ -49,13 +38,7 @@ class CardsTest < ActionDispatch::IntegrationTest
   test 'cannot update a card to set blank content' do
     card = create(:card, front: 'Back', back: 'Front')
 
-    jsonapi_patch "/api/cards/#{card.id}", params: {
-      data: {
-        attributes: { back: '' },
-        id: card.id,
-        type: 'cards'
-      }
-    }.to_json
+    jsonapi_patch card, { back: '' }
 
     assert_response :unprocessable_entity
 
@@ -68,7 +51,7 @@ class CardsTest < ActionDispatch::IntegrationTest
     card = create(:card)
 
     assert_difference 'Card.count', -1 do
-      jsonapi_delete "/api/cards/#{card.id}"
+      jsonapi_delete card
     end
 
     assert_response :no_content
@@ -77,11 +60,17 @@ class CardsTest < ActionDispatch::IntegrationTest
   test 'can get a single card' do
     card = create(:card, front: 'the front', back: 'the back')
 
-    jsonapi_get "/api/cards/#{card.id}"
+    jsonapi_get card
 
     assert_response :success
     body = JSON.parse(response.body)
     assert_equal 'the front', body['data']['attributes']['front']
     assert_equal 'the back', body['data']['attributes']['back']
+  end
+
+  private
+
+  def create_collection
+    @collection = create(:collection)
   end
 end

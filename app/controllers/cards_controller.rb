@@ -1,3 +1,3 @@
-class CardsController < JSONAPI::ResourceController
+class CardsController < ApplicationController
 
 end
