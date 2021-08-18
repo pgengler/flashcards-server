@@ -80,6 +80,7 @@ class CollectionsTest < ActionDispatch::IntegrationTest
 
   test 'import operation returns JSON with the number of cards added' do
     collection = create(:collection)
+    create_list :card, 5, collection: collection
 
     csv_data = CSV.generate do |csv|
       csv << ['a front', 'a back']
@@ -91,8 +92,11 @@ class CollectionsTest < ActionDispatch::IntegrationTest
     post "/api/collections/#{collection.id}/import", params: csv_data, headers: { 'Content-Type': 'text/csv' }
 
     assert_response :success
+    assert_equal response.headers['Content-Type'], 'application/vnd.api+json'
+
     json = JSON.parse(response.body)
-    assert_equal json['count'], 4
+    assert_equal json['meta']['cards_imported'], 4, 'includes number of cards imported in response meta'
+    assert_equal json['data']['relationships']['cards']['data'].length, 9, 'returns all cards (including newly-imported ones) in response'
   end
 
   test 'fails with 404 Not Found if trying to import to a nonexistent collection' do
