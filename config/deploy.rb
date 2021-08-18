@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.3.5'
+lock '3.10.1'
 
 set :application, 'flashcards-server'
 set :repo_url, 'https://github.com/pgengler/flashcards-server.git'
