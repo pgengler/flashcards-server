@@ -125,7 +125,7 @@ GEM
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pg (1.2.3)
-    puma (4.3.8)
+    puma (4.3.9)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -194,7 +194,7 @@ DEPENDENCIES
   jsonapi-resources
   listen (~> 3.2)
   pg
-  puma (~> 4.3.6)
+  puma (~> 4.3.9)
   rails (~> 6.1.0)
 
 BUNDLED WITH
