@@ -5,7 +5,7 @@ gem 'rails', '~> 6.1.0'
 gem 'dotenv-rails'
 gem 'jsonapi-resources'
 gem 'pg'
-gem 'puma', '~> 4.3.9'
+gem 'puma', '~> 4.3.11'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development do
